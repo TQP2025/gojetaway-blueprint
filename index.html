@@ -9,15 +9,19 @@
       --bg: #f4f7fb;
       --surface: #ffffff;
       --surface-alt: #f9fbff;
+      --surface-soft: #eef5fb;
       --text: #111827;
       --muted: #5b6472;
       --border: #d8e0ea;
       --blue: #0071b9;
+      --blue-dark: #0c4f80;
       --red: #ff0000;
       --black: #000000;
+      --green: #55ba4e;
+      --yellow: #f9fc30;
       --shadow: 0 12px 30px rgba(14, 30, 60, 0.08);
       --radius: 18px;
-      --max: 1280px;
+      --max: 1320px;
     }
 
     * {
@@ -186,7 +190,11 @@
     .section-card,
     .sub-card,
     .callout,
-    .status-box {
+    .status-box,
+    .diagram-card,
+    .question-card,
+    .decision-card,
+    .playbook-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -201,7 +209,11 @@
     .section-card h3,
     .sub-card h4,
     .callout h4,
-    .status-box h4 {
+    .status-box h4,
+    .diagram-card h3,
+    .question-card h4,
+    .decision-card h4,
+    .playbook-card h4 {
       margin-top: 0;
       line-height: 1.2;
     }
@@ -296,14 +308,20 @@
       grid-column: span 12;
     }
 
-    .span-6 { grid-column: span 6; }
+    .span-3 { grid-column: span 3; }
     .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
     .span-8 { grid-column: span 8; }
     .span-12 { grid-column: span 12; }
 
     .section-card p:last-child,
     .sub-card p:last-child,
-    .callout p:last-child {
+    .callout p:last-child,
+    .question-card p:last-child,
+    .decision-card p:last-child,
+    .playbook-card p:last-child {
       margin-bottom: 0;
     }
 
@@ -314,12 +332,18 @@
       margin-top: 18px;
     }
 
-    .sub-card {
+    .sub-card,
+    .question-card,
+    .decision-card,
+    .playbook-card {
       padding: 18px;
       background: var(--surface-alt);
     }
 
-    .sub-card h4 {
+    .sub-card h4,
+    .question-card h4,
+    .decision-card h4,
+    .playbook-card h4 {
       font-size: 18px;
       margin-bottom: 8px;
     }
@@ -445,6 +469,104 @@
       font-weight: 700;
     }
 
+    .diagram-card {
+      padding: 24px;
+    }
+
+    .diagram-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+      margin-top: 16px;
+    }
+
+    .diagram-node {
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      text-align: center;
+      font-weight: 700;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .diagram-node.core {
+      background: linear-gradient(135deg, rgba(0,113,185,0.08) 0%, rgba(0,113,185,0.18) 100%);
+      border-color: rgba(0,113,185,0.25);
+    }
+
+    .diagram-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .green { background: var(--green); }
+    .yellow { background: #d7b600; }
+    .blue { background: var(--blue); }
+    .red { background: var(--red); }
+
+    .decision-log,
+    .question-grid,
+    .playbook-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .decision-meta,
+    .question-meta,
+    .playbook-meta {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--blue-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
     .footer {
       padding: 28px 42px 50px;
       color: var(--muted);
@@ -458,15 +580,26 @@
       padding-top: 20px;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
       .hero-grid,
       .metrics,
+      .status-grid,
+      .diagram-grid,
       .sub-grid {
         grid-template-columns: 1fr;
       }
 
+      .diagram-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .span-3,
       .span-4,
+      .span-5,
       .span-6,
+      .span-7,
       .span-8,
       .span-12 {
         grid-column: span 12;
@@ -500,7 +633,7 @@
   <div class="app" id="top">
     <aside class="sidebar">
       <div class="brand-mark"><span class="brand-dot"></span> GO JET AWAY</div>
-      <p>Strategic Blueprint, Version 2.  Living internal reference for the business, the brand, and TravelQuote Pro.</p>
+      <p>Strategic Blueprint, Version 3.  Living internal reference for the business, the brand, and TravelQuote Pro.</p>
 
       <div class="nav-group">
         <div class="nav-label">Start Here</div>
@@ -515,6 +648,7 @@
       <div class="nav-group">
         <div class="nav-label">Platform</div>
         <div class="nav-links">
+          <a href="#system-map">System Map</a>
           <a href="#tqp">TravelQuote Pro</a>
           <a href="#systems">Core Systems</a>
           <a href="#data">Data Intelligence</a>
@@ -523,9 +657,18 @@
       </div>
 
       <div class="nav-group">
-        <div class="nav-label">Growth</div>
+        <div class="nav-label">Strategic Layers</div>
         <div class="nav-links">
           <a href="#operations">Operational Model</a>
+          <a href="#questions">Strategic Questions</a>
+          <a href="#decisions">Decision Log</a>
+          <a href="#playbook">Founder Playbook</a>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-label">Growth</div>
+        <div class="nav-links">
           <a href="#growth">Growth Strategy</a>
           <a href="#exit">10 Year Vision</a>
           <a href="#next">Next Steps</a>
@@ -558,6 +701,7 @@
                 <span class="pill">Brand System</span>
                 <span class="pill">Travel Sales Intelligence</span>
                 <span class="pill">Platform Roadmap</span>
+                <span class="pill">Decision Memory</span>
               </div>
             </div>
 
@@ -687,10 +831,46 @@
           </div>
         </section>
 
-        <section class="section-shell" id="tqp">
+        <section class="section-shell" id="system-map">
           <div class="section-head">
             <div>
               <div class="section-kicker">Section 04</div>
+              <h2 class="section-title">System Map</h2>
+            </div>
+          </div>
+          <div class="diagram-card">
+            <h3>High level ecosystem view</h3>
+            <p>
+              This is the strategic map of how GO JET AWAY, TravelQuote Pro, consultants, clients, suppliers, and data intelligence connect.  This system view is the center of the operational model.
+            </p>
+            <div class="diagram-grid">
+              <div class="diagram-node">GO JET AWAY Brand</div>
+              <div class="diagram-arrow">→</div>
+              <div class="diagram-node core">TravelQuote Pro<br />Travel Sales Intelligence Platform</div>
+              <div class="diagram-arrow">→</div>
+              <div class="diagram-node">Client Experience</div>
+            </div>
+            <div class="diagram-grid" style="margin-top: 12px;">
+              <div class="diagram-node">Travel Consultants</div>
+              <div class="diagram-arrow">→</div>
+              <div class="diagram-node core">Workflow + Presentation + Intelligence</div>
+              <div class="diagram-arrow">←</div>
+              <div class="diagram-node">Supplier Research Systems</div>
+            </div>
+            <div class="diagram-grid" style="margin-top: 12px;">
+              <div class="diagram-node">Website Booking Engine</div>
+              <div class="diagram-arrow">←</div>
+              <div class="diagram-node core">Data Intelligence Layer</div>
+              <div class="diagram-arrow">→</div>
+              <div class="diagram-node">Long Term Brand Value</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell" id="tqp">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 05</div>
               <h2 class="section-title">TravelQuote Pro</h2>
             </div>
           </div>
@@ -737,8 +917,30 @@
         <section class="section-shell" id="systems">
           <div class="section-head">
             <div>
-              <div class="section-kicker">Section 05</div>
+              <div class="section-kicker">Section 06</div>
               <h2 class="section-title">Core Systems</h2>
+            </div>
+          </div>
+          <div class="status-grid">
+            <div class="section-card">
+              <h3>HBS</h3>
+              <span class="status-chip"><span class="dot yellow"></span> Testing</span>
+              <p>Validating TravelJoy hotel data and image retrieval workflow.</p>
+            </div>
+            <div class="section-card">
+              <h3>FPS</h3>
+              <span class="status-chip"><span class="dot blue"></span> Rebuild Active</span>
+              <p>Flight system must remain stable and ready for future parsing support.</p>
+            </div>
+            <div class="section-card">
+              <h3>CBS</h3>
+              <span class="status-chip"><span class="dot yellow"></span> In Build</span>
+              <p>Cruise system architecture and content matching remain a major roadmap item.</p>
+            </div>
+            <div class="section-card">
+              <h3>Tours</h3>
+              <span class="status-chip"><span class="dot blue"></span> Planned</span>
+              <p>Tour components complete the full quote ecosystem beyond hotel, air, and cruise.</p>
             </div>
           </div>
 
@@ -798,7 +1000,7 @@
         <section class="section-shell" id="data">
           <div class="section-head">
             <div>
-              <div class="section-kicker">Section 06</div>
+              <div class="section-kicker">Section 07</div>
               <h2 class="section-title">Data Intelligence</h2>
             </div>
           </div>
@@ -841,7 +1043,7 @@
         <section class="section-shell" id="operations">
           <div class="section-head">
             <div>
-              <div class="section-kicker">Section 07</div>
+              <div class="section-kicker">Section 08</div>
               <h2 class="section-title">Operational Model</h2>
             </div>
           </div>
@@ -870,7 +1072,7 @@
         <section class="section-shell" id="roadmap">
           <div class="section-head">
             <div>
-              <div class="section-kicker">Section 08</div>
+              <div class="section-kicker">Section 09</div>
               <h2 class="section-title">Roadmap</h2>
             </div>
           </div>
@@ -906,10 +1108,88 @@
           </div>
         </section>
 
+        <section class="section-shell" id="questions">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 10</div>
+              <h2 class="section-title">Strategic Questions</h2>
+            </div>
+          </div>
+          <div class="question-grid">
+            <div class="question-card">
+              <span class="question-meta">Open Question</span>
+              <h4>How far should TravelQuote Pro go before it risks becoming an everything tool?</h4>
+              <p>The platform must remain quote first and avoid the bloat that damages adoption and time to value.</p>
+            </div>
+            <div class="question-card">
+              <span class="question-meta">Open Question</span>
+              <h4>What is the right balance between consultant revenue growth and website booking engine growth?</h4>
+              <p>The consultant channel scales relationships.  The website channel scales profitability.  Long term balance matters.</p>
+            </div>
+            <div class="question-card">
+              <span class="question-meta">Open Question</span>
+              <h4>Should TravelQuote Pro remain internal indefinitely or become a future SaaS style product?</h4>
+              <p>The current position is internal first, but this remains a long term strategic question worth preserving in the blueprint.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell" id="decisions">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 11</div>
+              <h2 class="section-title">Decision Log</h2>
+            </div>
+          </div>
+          <div class="decision-log">
+            <div class="decision-card">
+              <span class="decision-meta">Decision 2026</span>
+              <h4>TravelQuote Pro is positioned as a Travel Sales Intelligence Platform</h4>
+              <p>This language best captures the platform’s purpose beyond quoting by emphasizing presentation, workflow acceleration, and intelligence generation.</p>
+            </div>
+            <div class="decision-card">
+              <span class="decision-meta">Decision 2026</span>
+              <h4>TravelQuote Pro remains quote first and should not become a CRM</h4>
+              <p>This protects focus, reduces complexity, and aligns with how consultants already use external systems for supplier research and back office operations.</p>
+            </div>
+            <div class="decision-card">
+              <span class="decision-meta">Decision 2026</span>
+              <h4>Screenshot parsing is the first major post MVP acceleration feature</h4>
+              <p>It directly removes manual data entry friction and supports the under 60 second quote objective.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-shell" id="playbook">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 12</div>
+              <h2 class="section-title">Founder Playbook</h2>
+            </div>
+          </div>
+          <div class="playbook-grid">
+            <div class="playbook-card">
+              <span class="playbook-meta">Consultant Standard</span>
+              <h4>Consultants work for the brand</h4>
+              <p>The operating mindset is that no consultant works for an individual.  They represent GO JET AWAY and are expected to uphold brand level service standards.</p>
+            </div>
+            <div class="playbook-card">
+              <span class="playbook-meta">Client Standard</span>
+              <h4>Every quote is a brand impression</h4>
+              <p>The quote is not only a sales tool.  It is one of the strongest expressions of the brand and should always feel polished, premium, and helpful.</p>
+            </div>
+            <div class="playbook-card">
+              <span class="playbook-meta">Operating Rule</span>
+              <h4>Speed and presentation must coexist</h4>
+              <p>The objective is not merely faster quoting.  It is fast quoting plus a dramatically better client experience.</p>
+            </div>
+          </div>
+        </section>
+
         <section class="section-shell" id="growth">
           <div class="section-head">
             <div>
-              <div class="section-kicker">Section 09</div>
+              <div class="section-kicker">Section 13</div>
               <h2 class="section-title">Growth Strategy</h2>
             </div>
           </div>
@@ -932,7 +1212,7 @@
         <section class="section-shell" id="exit">
           <div class="section-head">
             <div>
-              <div class="section-kicker">Section 10</div>
+              <div class="section-kicker">Section 14</div>
               <h2 class="section-title">10 Year Vision</h2>
             </div>
           </div>
@@ -955,21 +1235,21 @@
         <section class="section-shell" id="next">
           <div class="section-head">
             <div>
-              <div class="section-kicker">Section 11</div>
+              <div class="section-kicker">Section 15</div>
               <h2 class="section-title">Immediate Next Steps</h2>
             </div>
           </div>
           <div class="section-grid">
             <div class="section-card span-12">
-              <h3>Version 3 Blueprint priorities</h3>
+              <h3>Version 4 Blueprint priorities</h3>
               <div class="sub-grid">
                 <div class="sub-card">
                   <h4>Expand content depth</h4>
                   <p>Add more detailed strategy on HBS, website booking model, consultant standards, platform operations, and data architecture.</p>
                 </div>
                 <div class="sub-card">
-                  <h4>Improve UI and UX</h4>
-                  <p>Continue evolving this blueprint into a cleaner, richer, command center style interface with visual diagrams and deeper navigation.</p>
+                  <h4>Improve diagrams and references</h4>
+                  <p>Add more visual maps, milestone views, and perhaps dedicated subpages as the blueprint evolves.</p>
                 </div>
               </div>
               <a class="top-link" href="#top">↑ Back to top</a>
@@ -980,7 +1260,7 @@
 
       <footer class="footer">
         <div class="footer-inner">
-          GO JET AWAY Strategic Blueprint, Version 2.  Built as the living strategic reference for the business, the brand, and TravelQuote Pro.
+          GO JET AWAY Strategic Blueprint, Version 3.  Built as the living strategic reference for the business, the brand, and TravelQuote Pro.
         </div>
       </footer>
     </div>
