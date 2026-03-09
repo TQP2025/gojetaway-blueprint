@@ -1,224 +1,989 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GO JET AWAY Strategic Blueprint</title>
-<style>
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f5f7fa;color:#111}
-header{background:#000;color:#fff;padding:30px}
-header h1{margin:0;font-size:32px}
-header p{margin-top:6px;color:#ccc}
-nav{position:fixed;top:0;left:0;width:240px;height:100%;background:#111;color:#fff;padding-top:20px;overflow:auto}
-nav h2{font-size:16px;padding-left:20px;margin-top:0}
-nav a{display:block;color:#ddd;padding:10px 20px;text-decoration:none;font-size:14px}
-nav a:hover{background:#333}
-main{margin-left:240px;padding:40px}
-section{margin-bottom:60px}
-h2{border-bottom:2px solid #ddd;padding-bottom:6px}
-h3{margin-top:24px}
-.card{background:#fff;border-radius:10px;padding:20px;margin-top:12px;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
-.highlight{background:#eef6ff;padding:15px;border-left:4px solid #0071b9;margin-top:12px}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GO JET AWAY Strategic Blueprint</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #f9fbff;
+      --text: #111827;
+      --muted: #5b6472;
+      --border: #d8e0ea;
+      --blue: #0071b9;
+      --red: #ff0000;
+      --black: #000000;
+      --shadow: 0 12px 30px rgba(14, 30, 60, 0.08);
+      --radius: 18px;
+      --max: 1280px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, #08131d 0%, #0f1d2b 100%);
+      color: #ffffff;
+      padding: 26px 20px 30px;
+      overflow-y: auto;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+      margin-bottom: 12px;
+    }
+
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.15);
+    }
+
+    .sidebar p {
+      margin: 0 0 22px;
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+    }
+
+    .nav-group {
+      margin-bottom: 24px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      color: rgba(255,255,255,0.55);
+      margin: 0 0 10px;
+    }
+
+    .nav-links {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      display: block;
+      color: #ffffff;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.1);
+      text-decoration: none;
+      transform: translateX(2px);
+    }
+
+    .sidebar-note {
+      margin-top: 28px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    .hero {
+      padding: 48px 42px 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #eef6ff 60%, #f8fbff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(0, 113, 185, 0.1);
+      color: var(--blue);
+      border: 1px solid rgba(0, 113, 185, 0.16);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+    }
+
+    .hero-copy {
+      max-width: 900px;
+      margin-top: 16px;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .hero-card,
+    .metric-card,
+    .section-card,
+    .sub-card,
+    .callout,
+    .status-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 24px;
+    }
+
+    .hero-card h2,
+    .section-card h3,
+    .sub-card h4,
+    .callout h4,
+    .status-box h4 {
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    .hero-card h2 {
+      margin-bottom: 10px;
+      font-size: 23px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      background: #f4f8fd;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .status-box {
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .status-line {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .status-line strong {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 42px 70px;
+    }
+
+    .section-shell {
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.4px;
+    }
+
+    .section-kicker {
+      color: var(--muted);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .section-card {
+      padding: 22px;
+      grid-column: span 12;
+    }
+
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .section-card p:last-child,
+    .sub-card p:last-child,
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .sub-card {
+      padding: 18px;
+      background: var(--surface-alt);
+    }
+
+    .sub-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .bullet-list {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .bullet-list li {
+      margin-bottom: 8px;
+    }
+
+    .callout {
+      padding: 20px;
+      margin-top: 18px;
+      border-left: 5px solid var(--blue);
+    }
+
+    .callout.red {
+      border-left-color: var(--red);
+    }
+
+    details.section-accordion {
+      margin-top: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    details.section-accordion summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--surface);
+    }
+
+    details.section-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .accordion-body {
+      padding: 0 22px 22px;
+      border-top: 1px solid var(--border);
+      background: var(--surface-alt);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .metric-card {
+      padding: 20px;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .metric-copy {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface-alt);
+    }
+
+    .timeline-phase {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    .timeline-item h4 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .top-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .footer {
+      padding: 28px 42px 50px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .metrics,
+      .sub-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .span-4,
+      .span-6,
+      .span-8,
+      .span-12 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+      }
+
+      .hero,
+      .main,
+      .footer {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="app" id="top">
+    <aside class="sidebar">
+      <div class="brand-mark"><span class="brand-dot"></span> GO JET AWAY</div>
+      <p>Strategic Blueprint, Version 2.  Living internal reference for the business, the brand, and TravelQuote Pro.</p>
 
-<nav>
-<h2>Blueprint</h2>
-<a href="#vision">Company Vision</a>
-<a href="#architecture">Business Architecture</a>
-<a href="#brand">Brand Philosophy</a>
-<a href="#tqp">TravelQuote Pro Overview</a>
-<a href="#platform">Platform Architecture</a>
-<a href="#systems">Core Systems</a>
-<a href="#data">Data Intelligence</a>
-<a href="#ttv">Time to Value</a>
-<a href="#ai">AI Roadmap</a>
-<a href="#growth">Growth Strategy</a>
-<a href="#exit">10 Year Vision</a>
-</nav>
+      <div class="nav-group">
+        <div class="nav-label">Start Here</div>
+        <div class="nav-links">
+          <a href="#home">Overview</a>
+          <a href="#vision">Vision</a>
+          <a href="#philosophy">Brand Philosophy</a>
+          <a href="#business">Business Architecture</a>
+        </div>
+      </div>
 
-<header>
-<h1>GO JET AWAY Strategic Blueprint</h1>
-<p>Version 1  •  Internal Strategic Architecture</p>
-</header>
+      <div class="nav-group">
+        <div class="nav-label">Platform</div>
+        <div class="nav-links">
+          <a href="#tqp">TravelQuote Pro</a>
+          <a href="#systems">Core Systems</a>
+          <a href="#data">Data Intelligence</a>
+          <a href="#roadmap">Roadmap</a>
+        </div>
+      </div>
 
-<main>
+      <div class="nav-group">
+        <div class="nav-label">Growth</div>
+        <div class="nav-links">
+          <a href="#operations">Operational Model</a>
+          <a href="#growth">Growth Strategy</a>
+          <a href="#exit">10 Year Vision</a>
+          <a href="#next">Next Steps</a>
+        </div>
+      </div>
 
-<section id="vision">
-<h2>Company Vision</h2>
-<div class="card">
-<p>GO JET AWAY exists to create extraordinary travel experiences while empowering travel consultants to build profitable and fulfilling careers.</p>
-<div class="highlight">
-<p><strong>Core philosophy:</strong><br>
-You can have everything in life you want, if you will just help enough other people get what they want.  — Zig Ziglar</p>
-</div>
-<p>The company focuses on delivering value simultaneously to travelers and travel consultants. When both succeed the brand grows organically.</p>
-</div>
-</section>
+      <div class="sidebar-note">
+        <strong>Core Identity</strong><br />
+        TravelQuote Pro is a Travel Sales Intelligence Platform.  GO JET AWAY is the luxury travel brand that deploys it.
+      </div>
+    </aside>
 
-<section id="architecture">
-<h2>Business Architecture</h2>
-<div class="card">
-<h3>Host Agency Relationship</h3>
-<p>GO JET AWAY operates under a host agency structure which provides licensing, supplier contracts, commission processing, and operational infrastructure.</p>
+    <div class="content">
+      <header class="hero" id="home">
+        <div class="hero-inner">
+          <div class="eyebrow">Strategic Command Center</div>
+          <h1>GO JET AWAY Strategic Blueprint</h1>
+          <p class="hero-copy">
+            This blueprint is the central reference point for the strategic architecture of GO JET AWAY and TravelQuote Pro.  It defines the business model, the platform vision, the operating philosophy, the roadmap, and the long term direction of the brand.
+          </p>
 
-<h3>Portability Principle</h3>
-<p>The GO JET AWAY brand remains independent and portable. The brand owns the client relationship and consultant network. Host agencies provide infrastructure but do not control the brand.</p>
+          <div class="hero-grid">
+            <div class="hero-card">
+              <h2>What this blueprint is</h2>
+              <p>
+                A living strategic manual, not a static business plan.  It exists to organize thinking, align decisions, and ensure that every future build choice supports the long term architecture of the business.
+              </p>
+              <div class="pill-row">
+                <span class="pill">Business Architecture</span>
+                <span class="pill">Brand System</span>
+                <span class="pill">Travel Sales Intelligence</span>
+                <span class="pill">Platform Roadmap</span>
+              </div>
+            </div>
 
-<h3>Primary Revenue Channels</h3>
-<ul>
-<li>Founder travel sales</li>
-<li>Consultant network revenue</li>
-<li>Website booking engine revenue</li>
-</ul>
-</div>
-</section>
+            <div class="status-box">
+              <h4>Current Strategic Status</h4>
+              <div class="status-line"><strong>Brand</strong> GO JET AWAY is being built as a portable luxury travel brand.</div>
+              <div class="status-line"><strong>Platform</strong> TravelQuote Pro is being defined as a Travel Sales Intelligence Platform.</div>
+              <div class="status-line"><strong>Primary MVP Hurdle</strong> Validate HBS with TravelJoy hotel data and image retrieval.</div>
+              <div class="status-line"><strong>Immediate Priority</strong> Reach MVP stability, then accelerate into quoting efficiency and revenue generation.</div>
+            </div>
+          </div>
+        </div>
+      </header>
 
-<section id="brand">
-<h2>Brand Philosophy</h2>
-<div class="card">
-<p>Consultants represent the GO JET AWAY brand. Service quality must reflect luxury level standards.</p>
-<ul>
-<li>Elite service mindset</li>
-<li>High quality client experience</li>
-<li>Professional presentation</li>
-<li>Consultants work for the brand, not for an individual</li>
-</ul>
-</div>
-</section>
+      <main class="main">
+        <section class="section-shell" id="vision">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 01</div>
+              <h2 class="section-title">Vision</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-8">
+              <h3>Mission</h3>
+              <p>
+                GO JET AWAY exists to create extraordinary travel experiences for clients while building a platform and brand that helps travel consultants become faster, more profitable, and more impressive in the eyes of the client.
+              </p>
+              <div class="callout">
+                <h4>Strategic Definition</h4>
+                <p>
+                  GO JET AWAY is the brand.  TravelQuote Pro is the operating sales layer.  Together they form a long term asset designed to generate revenue, scale intelligently, and eventually become highly valuable as a business system.
+                </p>
+              </div>
+            </div>
+            <div class="section-card span-4">
+              <h3>Guiding Principle</h3>
+              <p>
+                “You can have everything in life you want, if you will just help enough other people get what they want.”
+              </p>
+              <p><strong>Zig Ziglar</strong></p>
+              <p>
+                This principle sits at the heart of both the consultant value model and the client experience model.
+              </p>
+            </div>
+          </div>
+        </section>
 
-<section id="tqp">
-<h2>TravelQuote Pro Overview</h2>
-<div class="card">
-<p><strong>TravelQuote Pro is a Travel Sales Intelligence Platform.</strong></p>
-<p>Its mission is to allow travel consultants to build stunning interactive travel quotes in seconds while generating valuable business intelligence for the agency.</p>
+        <section class="section-shell" id="philosophy">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 02</div>
+              <h2 class="section-title">Brand Philosophy</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-12">
+              <h3>Everything is brand identity</h3>
+              <p>
+                The website, the quote presentation, the consultant behavior, the speed of response, the tone of communication, and the visual polish all reinforce the GO JET AWAY brand.  Consultants do not work for an individual, they work for the brand and represent its standards.
+              </p>
+              <div class="sub-grid">
+                <div class="sub-card">
+                  <h4>Client Side Standard</h4>
+                  <p>Luxury mindset, elite service, clear communication, strong presentation, and memorable travel planning support.</p>
+                </div>
+                <div class="sub-card">
+                  <h4>Consultant Side Standard</h4>
+                  <p>Professionalism, brand loyalty, service discipline, strong follow through, and commitment to quality client care.</p>
+                </div>
+              </div>
+              <div class="callout red">
+                <h4>Non negotiable principle</h4>
+                <p>
+                  Fast, focused, beautiful, quote first.  TravelQuote Pro and the GO JET AWAY service model must always reflect this discipline.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<h3>Core Principles</h3>
-<ul>
-<li>Fast</li>
-<li>Focused</li>
-<li>Beautiful</li>
-<li>Quote first</li>
-</ul>
-</div>
-</section>
+        <section class="section-shell" id="business">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 03</div>
+              <h2 class="section-title">Business Architecture</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-6">
+              <h3>Host agency structure</h3>
+              <p>
+                GO JET AWAY operates under a parent company structure that provides legal operating support, supplier contracts, commission processing, and back end infrastructure.  The parent company negotiates supplier relationships.  GO JET AWAY does not.
+              </p>
+            </div>
+            <div class="section-card span-6">
+              <h3>Portability advantage</h3>
+              <p>
+                The brand remains portable.  Clients and consultants are attached to GO JET AWAY, not to the host agency.  This protects long term flexibility and increases future strategic options.
+              </p>
+            </div>
+            <div class="section-card span-12">
+              <h3>Revenue channels</h3>
+              <div class="metrics">
+                <div class="metric-card">
+                  <div class="metric-label">Channel 1</div>
+                  <div class="metric-value">Founder</div>
+                  <div class="metric-copy">Personal sales remain the strongest immediate income source during early stage growth.</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Channel 2</div>
+                  <div class="metric-value">Consultants</div>
+                  <div class="metric-copy">Consultant revenue builds scale, though it requires support, coaching, and time.</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Channel 3</div>
+                  <div class="metric-value">Website</div>
+                  <div class="metric-copy">The website booking engine is expected to become the highest margin long term revenue channel.</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-label">Core Rule</div>
+                  <div class="metric-value">Quote First</div>
+                  <div class="metric-copy">All business should begin in TravelQuote Pro so the agency captures data and sales intelligence.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<section id="platform">
-<h2>Platform Architecture</h2>
-<div class="card">
-<p><strong>Workflow Structure:</strong></p>
-<p>Consultant → TravelQuote Pro → Client</p>
+        <section class="section-shell" id="tqp">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 04</div>
+              <h2 class="section-title">TravelQuote Pro</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-12">
+              <h3>Platform definition</h3>
+              <p>
+                TravelQuote Pro is a <strong>Travel Sales Intelligence Platform</strong>.  It is not a CRM, not an accounting system, and not a booking engine.  It is the central sales presentation layer where research becomes a client ready quote and where valuable operational intelligence is quietly captured.
+              </p>
+            </div>
+            <div class="section-card span-4">
+              <h3>Presentation engine</h3>
+              <p>Creates the stunning, interactive quote experience the client sees.</p>
+            </div>
+            <div class="section-card span-4">
+              <h3>Workflow engine</h3>
+              <p>Allows consultants to assemble quotes quickly and remove friction from the sales process.</p>
+            </div>
+            <div class="section-card span-4">
+              <h3>Intelligence engine</h3>
+              <p>Captures structured data from quotes, consultant actions, and client engagement.</p>
+            </div>
+          </div>
 
-<h3>Three Core Engines</h3>
-<ul>
-<li>Presentation Engine</li>
-<li>Workflow Engine</li>
-<li>Intelligence Engine</li>
-</ul>
-</div>
-</section>
+          <details class="section-accordion" open>
+            <summary>
+              <span>Why this platform matters</span>
+              <span>Expand / Collapse</span>
+            </summary>
+            <div class="accordion-body">
+              <p>
+                The traditional travel consultant workflow wastes time through manual copying, formatting, image handling, and text based emails.  TravelQuote Pro solves two problems at once, quote speed and quote quality.  A consultant can move faster, and the client receives a far stronger presentation.
+              </p>
+              <ul class="bullet-list">
+                <li>Reduces quote creation time dramatically</li>
+                <li>Improves professionalism and close rate potential</li>
+                <li>Builds an internal data asset with every quote produced</li>
+                <li>Strengthens brand perception through superior presentation</li>
+              </ul>
+            </div>
+          </details>
+        </section>
 
-<section id="systems">
-<h2>Core Systems</h2>
-<div class="card">
-<h3>HBS</h3>
-<p>Hotel Build System. Retrieves hotel descriptions and images and builds reusable hotel templates.</p>
+        <section class="section-shell" id="systems">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 05</div>
+              <h2 class="section-title">Core Systems</h2>
+            </div>
+          </div>
 
-<h3>FPS</h3>
-<p>Flight system handling flight quote components and airline information.</p>
+          <details class="section-accordion" open>
+            <summary>
+              <span>Hotel Build System, HBS</span>
+              <span>Expand / Collapse</span>
+            </summary>
+            <div class="accordion-body">
+              <p>
+                HBS is the pivotal system for hotel content and image retrieval.  The immediate objective is to validate the TravelJoy bookmarklet based hotel extraction process.  If successful, HBS becomes the gateway to fast hotel template creation and major time savings.
+              </p>
+              <div class="callout">
+                <h4>Current key question</h4>
+                <p>Does the TravelJoy data and image retrieval workflow function reliably enough to accelerate MVP progress?</p>
+              </div>
+            </div>
+          </details>
 
-<h3>CBS</h3>
-<p>Cruise Build System for cruise itineraries and ship content.</p>
+          <details class="section-accordion">
+            <summary>
+              <span>Flight System, FPS</span>
+              <span>Expand / Collapse</span>
+            </summary>
+            <div class="accordion-body">
+              <p>
+                FPS handles structured flight information, airline logic, and future flight data enhancements.  It must remain stable and compatible with future parsing features and possible API enhancements.
+              </p>
+            </div>
+          </details>
 
-<h3>Tours</h3>
-<p>Tour package component for multi day tours and excursions.</p>
-</div>
-</section>
+          <details class="section-accordion">
+            <summary>
+              <span>Cruise Build System, CBS</span>
+              <span>Expand / Collapse</span>
+            </summary>
+            <div class="accordion-body">
+              <p>
+                CBS is the framework for cruise content, itineraries, ship information, and future cruise matching against prebuilt templates and media libraries.
+              </p>
+            </div>
+          </details>
 
-<section id="data">
-<h2>Travel Intelligence Data</h2>
-<div class="card">
-<p>Every quote created within TravelQuote Pro generates structured business intelligence.</p>
+          <details class="section-accordion">
+            <summary>
+              <span>Tours Component</span>
+              <span>Expand / Collapse</span>
+            </summary>
+            <div class="accordion-body">
+              <p>
+                The tours component extends the platform beyond hotels, cruises, and flights, enabling broader quote assembly and more complete itinerary construction.
+              </p>
+            </div>
+          </details>
+        </section>
 
-<ul>
-<li>Destination demand trends</li>
-<li>Hotel conversion rates</li>
-<li>Consultant performance metrics</li>
-<li>Client interaction analytics</li>
-<li>Seasonal travel trends</li>
-<li>Environmental travel factors including hurricanes and sargassum patterns</li>
-</ul>
-</div>
-</section>
+        <section class="section-shell" id="data">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 06</div>
+              <h2 class="section-title">Data Intelligence</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-12">
+              <h3>The hidden asset</h3>
+              <p>
+                Most travel agencies track sales volume and commission but do not extract deeper intelligence.  TravelQuote Pro is designed to collect the data layers that ordinary agencies ignore.  Over time this becomes an extraordinary strategic asset.
+              </p>
+              <div class="sub-grid">
+                <div class="sub-card">
+                  <h4>Sales intelligence</h4>
+                  <ul class="bullet-list">
+                    <li>Hotel conversion patterns</li>
+                    <li>Destination demand trends</li>
+                    <li>Consultant close rates</li>
+                    <li>Quote open behavior</li>
+                  </ul>
+                </div>
+                <div class="sub-card">
+                  <h4>Environmental intelligence</h4>
+                  <ul class="bullet-list">
+                    <li>Hurricane season effects</li>
+                    <li>Sargassum redirection patterns</li>
+                    <li>Seasonal travel movement</li>
+                    <li>Destination substitution insights</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="callout red">
+                <h4>Long term strategic value</h4>
+                <p>
+                  The accumulation of structured quote data over years can increase the value of the business significantly by creating a proprietary travel sales intelligence dataset.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<section id="ttv">
-<h2>Time to Value Philosophy</h2>
-<div class="card">
-<p>The platform is designed so consultants reach meaningful value almost immediately.</p>
+        <section class="section-shell" id="operations">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 07</div>
+              <h2 class="section-title">Operational Model</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-6">
+              <h3>Time to value</h3>
+              <p>
+                The platform exists to deliver immediate, meaningful value.  The design target is for a consultant to reach a complete polished quote in under 60 seconds once the relevant travel research is already known.
+              </p>
+            </div>
+            <div class="section-card span-6">
+              <h3>Quote first discipline</h3>
+              <p>
+                Every booking opportunity should begin in TravelQuote Pro.  This ensures consistency, captures intelligence, strengthens presentation, and creates a reliable operational loop.
+              </p>
+            </div>
+            <div class="section-card span-12">
+              <h3>Operating structure</h3>
+              <p>
+                Consultant research remains external across supplier systems.  TravelQuote Pro is the internal assembly and presentation layer.  This keeps the platform focused and avoids trying to become an everything tool.
+              </p>
+            </div>
+          </div>
+        </section>
 
-<h3>Goal</h3>
-<p>Create a complete professional travel quote in under 60 seconds.</p>
+        <section class="section-shell" id="roadmap">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 08</div>
+              <h2 class="section-title">Roadmap</h2>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-phase">Now</div>
+              <div>
+                <h4>MVP stability</h4>
+                <p>Validate HBS, stabilize FPS, CBS, and Tours, and get the system operational for real internal usage.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-phase">Immediately After MVP</div>
+              <div>
+                <h4>Screenshot parsing priority</h4>
+                <p>Parsing becomes the first major post MVP acceleration feature because it removes manual data entry friction from the consultant workflow.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-phase">12 to 18 Months</div>
+              <div>
+                <h4>AI assisted assembly</h4>
+                <p>Begin serious experimentation with OpenClaw style agents and assisted quote building workflows as the ecosystem matures.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-phase">Longer Term</div>
+              <div>
+                <h4>Travel intelligence expansion</h4>
+                <p>Leverage accumulated data for quote analytics, consultant performance support, destination intelligence, and future brand value growth.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-<p>TravelQuote Pro removes friction caused by manual copying, formatting, and image insertion traditionally required when building quotes through email.</p>
-</div>
-</section>
+        <section class="section-shell" id="growth">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 09</div>
+              <h2 class="section-title">Growth Strategy</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-4">
+              <h3>Founder first</h3>
+              <p>Short term growth relies heavily on the founder’s own bookings and sales performance.</p>
+            </div>
+            <div class="section-card span-4">
+              <h3>Consultant recruiting</h3>
+              <p>Once MVP is stable, begin recruiting high quality consultants who align with the luxury service model and brand philosophy.</p>
+            </div>
+            <div class="section-card span-4">
+              <h3>Website scale</h3>
+              <p>Build the website booking engine into a high margin long term growth channel supported by the quote experience and the brand.</p>
+            </div>
+          </div>
+        </section>
 
-<section id="ai">
-<h2>AI Development Roadmap</h2>
-<div class="card">
-<h3>Short Term</h3>
-<ul>
-<li>Screenshot parsing</li>
-<li>Bookmarklet data extraction</li>
-<li>Automated component population</li>
-</ul>
+        <section class="section-shell" id="exit">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 10</div>
+              <h2 class="section-title">10 Year Vision</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-12">
+              <h3>Long term asset creation</h3>
+              <p>
+                Over a ten year span, GO JET AWAY aims to become a highly valuable travel brand supported by proprietary technology, a consultant ecosystem, and a large travel sales intelligence dataset.  This creates optionality, whether that means continued growth, strategic sale, or broader expansion.
+              </p>
+              <ul class="bullet-list">
+                <li>Portable luxury travel brand</li>
+                <li>TravelQuote Pro as proprietary operating layer</li>
+                <li>Years of structured sales intelligence data</li>
+                <li>Clear strategic value for a future buyer</li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-<h3>Medium Term</h3>
-<ul>
-<li>AI quote assistant</li>
-<li>OpenClaw agent experimentation</li>
-<li>Quote intelligence analytics</li>
-</ul>
+        <section class="section-shell" id="next">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Section 11</div>
+              <h2 class="section-title">Immediate Next Steps</h2>
+            </div>
+          </div>
+          <div class="section-grid">
+            <div class="section-card span-12">
+              <h3>Version 3 Blueprint priorities</h3>
+              <div class="sub-grid">
+                <div class="sub-card">
+                  <h4>Expand content depth</h4>
+                  <p>Add more detailed strategy on HBS, website booking model, consultant standards, platform operations, and data architecture.</p>
+                </div>
+                <div class="sub-card">
+                  <h4>Improve UI and UX</h4>
+                  <p>Continue evolving this blueprint into a cleaner, richer, command center style interface with visual diagrams and deeper navigation.</p>
+                </div>
+              </div>
+              <a class="top-link" href="#top">↑ Back to top</a>
+            </div>
+          </div>
+        </section>
+      </main>
 
-<h3>Long Term</h3>
-<ul>
-<li>Fully automated quote generation</li>
-<li>AI consultant assistants</li>
-</ul>
-</div>
-</section>
-
-<section id="growth">
-<h2>Growth Strategy</h2>
-<div class="card">
-<ul>
-<li>Founder driven sales growth</li>
-<li>Recruitment of high quality travel consultants</li>
-<li>Expansion of website booking traffic</li>
-<li>Leveraging TravelQuote Pro as a competitive recruiting advantage</li>
-</ul>
-</div>
-</section>
-
-<section id="exit">
-<h2>10 Year Strategic Vision</h2>
-<div class="card">
-<p>Over the next decade GO JET AWAY aims to build a powerful travel brand supported by proprietary technology.</p>
-
-<p>Potential long term outcomes include strategic acquisition or expansion of the platform.</p>
-
-<h3>Strategic Assets</h3>
-<ul>
-<li>Established travel brand</li>
-<li>Consultant network</li>
-<li>TravelQuote Pro platform</li>
-<li>Large travel intelligence dataset</li>
-</ul>
-</div>
-</section>
-
-</main>
-
+      <footer class="footer">
+        <div class="footer-inner">
+          GO JET AWAY Strategic Blueprint, Version 2.  Built as the living strategic reference for the business, the brand, and TravelQuote Pro.
+        </div>
+      </footer>
+    </div>
+  </div>
 </body>
 </html>
